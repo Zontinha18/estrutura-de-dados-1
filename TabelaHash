@@ -1,0 +1,47 @@
+using System;
+using System.Collections;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Hashtable tabelaHash = new Hashtable();
+
+        while (true)
+        {
+            Console.WriteLine("Digite o CPF:");
+            string cpf = Console.ReadLine();
+
+            if (tabelaHash.ContainsKey(cpf))
+            {
+                Console.WriteLine("Este CPF já foi inserido anteriormente. Insira um novo CPF.");
+                continue;
+            }
+
+            Console.WriteLine("Digite o Nome:");
+            string nome = Console.ReadLine();
+
+            try
+            {
+                tabelaHash.Add(cpf, nome);
+                Console.WriteLine("Par Chave-Valor adicionado com sucesso!");
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Erro: Chave duplicada. Tente novamente.");
+            }
+
+            Console.WriteLine("Deseja adicionar outro par Chave-Valor? (S/N)");
+            string continuar = Console.ReadLine().Trim().ToUpper();
+
+            if (continuar != "S")
+                break;
+        }
+
+        Console.WriteLine("\nDados inseridos:");
+        foreach (DictionaryEntry entry in tabelaHash)
+        {
+            Console.WriteLine($"CPF: {entry.Key} - Nome: {entry.Value}");
+        }
+    }
+}
