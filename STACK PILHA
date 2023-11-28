@@ -1,1 +1,39 @@
-Program.cs
+using System;
+using System.Collections.Generic;
+
+class PilhaStack
+{
+    private Stack<string> pilha = new Stack<string>();
+
+    public void Pop() => pilha.Pop();
+    public void Push(string item) => pilha.Push(item);
+    public string Peek() => pilha.Peek();
+    public bool IsEmpty() => pilha.Count == 0;
+    public void PrintStack()
+    {
+        foreach (var item in pilha)
+        {
+            Console.WriteLine(item);
+        }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        PilhaStack pilhaString = new PilhaStack();
+        pilhaString.Push("Primeiro valor (110)");
+        pilhaString.Push("Segundo valor (200)");
+        pilhaString.Push("Terceiro valor (340)");
+
+        pilhaString.PrintStack();
+
+        Console.WriteLine("Item do topo: " + pilhaString.Peek());
+
+        pilhaString.Pop();
+        pilhaString.PrintStack();
+
+        Console.WriteLine("A pilha está vazia? " + pilhaString.IsEmpty());
+    }
+}
